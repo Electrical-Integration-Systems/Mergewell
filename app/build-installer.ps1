@@ -12,6 +12,7 @@ $publishDirectory = Join-Path $root 'artifacts\publish'
 $installerDirectory = Join-Path $root 'artifacts\installer'
 $project = Join-Path $root 'Mergewell.App\Mergewell.App.csproj'
 $wixSource = Join-Path $root 'Installer\Package.wxs'
+$wixUiExtension = 'WixToolset.UI.wixext/6.0.2'
 $versionProperties = [xml](Get-Content -LiteralPath (Join-Path $root 'Directory.Build.props'))
 $version = $versionProperties.Project.PropertyGroup.MergewellVersion
 $outputMsi = Join-Path $installerDirectory "Mergewell-v$version-x64.msi"
@@ -29,6 +30,11 @@ try {
     dotnet tool restore
     if ($LASTEXITCODE -ne 0) {
         throw "Local tool restore failed with exit code $LASTEXITCODE."
+    }
+
+    dotnet wix extension add $wixUiExtension
+    if ($LASTEXITCODE -ne 0) {
+        throw "WiX UI extension restore failed with exit code $LASTEXITCODE."
     }
 
     dotnet wix build $wixSource -arch x64 -d "AppVersion=$version" -ext WixToolset.UI.wixext -bindpath "Publish=$publishDirectory" -o $outputMsi
