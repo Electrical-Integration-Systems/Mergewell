@@ -7,6 +7,7 @@ Mergewell is a Windows desktop application that converts Word documents to PDF, 
 - `app/` contains the .NET 8 application, tests, and WiX installer.
 - `demo/` contains the original PowerShell prototype used as a behavior reference.
 - `IDEAS.md` collects possible future improvements.
+- `UPDATES.md` describes the proposed in-app update architecture.
 
 ## Build
 
