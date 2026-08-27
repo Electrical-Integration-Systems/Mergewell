@@ -1,0 +1,48 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="Mergewell"
+           Manufacturer="Mergewell"
+           Version="$(var.AppVersion)"
+           UpgradeCode="7E9383AA-A9CD-48C9-B142-BCCB80742F7F"
+           Scope="perMachine">
+    <SummaryInformation Description="Mergewell WinUI 3 desktop application" />
+    <Icon Id="MergewellIcon" SourceFile="Mergewell.App\Assets\AppIcon.ico" />
+    <Property Id="ARPPRODUCTICON" Value="MergewellIcon" />
+    <Property Id="ARPCOMMENTS" Value="Mergewell v$(var.AppVersion)" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of Mergewell is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="Mergewell" />
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder" />
+
+    <Feature Id="MainFeature" Title="Mergewell" Level="1">
+      <ComponentGroupRef Id="PublishedFiles" />
+      <ComponentRef Id="ApplicationShortcuts" />
+    </Feature>
+
+    <WixVariable Id="WixUIBannerBmp" Value="Installer\Banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Installer\Dialog.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="Installer\License.rtf" />
+    <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+  </Package>
+
+  <Fragment>
+    <ComponentGroup Id="PublishedFiles" Directory="INSTALLFOLDER">
+      <Files Include="!(bindpath.Publish)\**" />
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <Component Id="ApplicationShortcuts" Directory="INSTALLFOLDER" Guid="*">
+      <Shortcut Id="StartMenuShortcut"
+                Directory="ProgramMenuFolder"
+                Name="Mergewell"
+                Description="Merge Word documents and PDFs"
+                Target="[INSTALLFOLDER]Mergewell.exe"
+                WorkingDirectory="INSTALLFOLDER" />
+      <RegistryValue Root="HKLM" Key="Software\Mergewell" Name="Installed" Type="integer" Value="1" KeyPath="yes" />
+    </Component>
+  </Fragment>
+</Wix>

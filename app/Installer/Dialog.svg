@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="493" height="312" viewBox="0 0 493 312">
+  <rect width="493" height="312" fill="#F7FBFF"/>
+  <rect width="168" height="312" fill="#EAF3FD"/>
+  <circle cx="84" cy="92" r="48" fill="#0F6CBD"/>
+  <path d="M63 64h34l22 22v60H63z" fill="#fff"/>
+  <path d="M97 64v22h22M72 101h38M72 115h38M72 129h22" fill="none" stroke="#0F6CBD" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M39 89v41M27 118l12 12 12-12" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="34" y="178" font-family="Segoe UI, sans-serif" font-size="23" font-weight="600" fill="#102A43">Mergewell</text>
+  <text x="34" y="201" font-family="Segoe UI, sans-serif" font-size="12" fill="#526D82">Documents, together.</text>
+  <path d="M192 60h250M192 86h210M192 112h236" stroke="#DCEAF7" stroke-width="8" stroke-linecap="round"/>
+</svg>

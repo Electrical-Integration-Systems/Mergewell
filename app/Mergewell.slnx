@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Mergewell.Core/Mergewell.Core.csproj" />
+  <Project Path="Mergewell.Tests/Mergewell.Tests.csproj" />
+</Solution>

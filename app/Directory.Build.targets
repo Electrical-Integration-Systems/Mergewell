@@ -1,0 +1,12 @@
+<Project>
+  <Target Name="SyncMergewellManifestVersions"
+          BeforeTargets="PrepareForBuild"
+          Condition="'$(MSBuildProjectName)' == 'Mergewell.App'">
+    <XmlPoke XmlInputPath="$(MSBuildProjectDirectory)\app.manifest"
+             Query="/*[local-name()='assembly']/*[local-name()='assemblyIdentity']/@version"
+             Value="$(MergewellVersion).0" />
+    <XmlPoke XmlInputPath="$(MSBuildProjectDirectory)\Package.appxmanifest"
+             Query="/*[local-name()='Package']/*[local-name()='Identity']/@Version"
+             Value="$(MergewellVersion).0" />
+  </Target>
+</Project>

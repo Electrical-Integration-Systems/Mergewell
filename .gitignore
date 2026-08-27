@@ -1,0 +1,49 @@
+# Visual Studio and .NET
+.vs/
+.wix/
+**/.wix/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build, test, and installer output
+artifacts/
+**/artifacts/
+TestResults/
+**/TestResults/
+*.msi
+*.wixpdb
+*.binlog
+coverage*
+
+# Local tooling and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Required application publish profiles
+!**/Properties/PublishProfiles/
+!**/Properties/PublishProfiles/*.pubxml
+
+# Local configuration and sensitive files
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+**/appsettings.*.Local.json
+**/secrets.json
+**/credentials.json
+*.pfx
+*.p12
+*.pem
+*.key
+*.cer
+
+# Runtime data when a storage root is placed in the repository
+settings.json
+history.jsonl
+jobs/

@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <MergewellVersion>0.0.1</MergewellVersion>
+    <Version>$(MergewellVersion)</Version>
+    <AssemblyVersion>$(MergewellVersion).0</AssemblyVersion>
+    <FileVersion>$(MergewellVersion).0</FileVersion>
+    <InformationalVersion>$(MergewellVersion)</InformationalVersion>
+  </PropertyGroup>
+</Project>

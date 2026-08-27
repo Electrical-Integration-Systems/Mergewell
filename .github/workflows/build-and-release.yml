@@ -1,0 +1,49 @@
+name: Build and release
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Test
+        run: dotnet test .\app\Mergewell.Tests\Mergewell.Tests.csproj -c Release
+      - name: Build application
+        run: dotnet build .\app\Mergewell.App\Mergewell.App.csproj -c Release -p:Platform=x64
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Verify tag version
+        shell: pwsh
+        run: |
+          [xml]$properties = Get-Content .\app\Directory.Build.props
+          $version = $properties.Project.PropertyGroup.MergewellVersion
+          if ("v$version" -ne "${{ github.ref_name }}") {
+            throw "Tag ${{ github.ref_name }} does not match configured version v$version."
+          }
+      - name: Build installer
+        shell: pwsh
+        run: .\app\build-installer.ps1
+      - name: Create GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" .\app\artifacts\installer\*.msi --generate-notes --title "Mergewell ${{ github.ref_name }}"

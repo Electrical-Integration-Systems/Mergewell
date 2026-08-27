@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Mergewell.App (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Mergewell.App (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
